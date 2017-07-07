@@ -1,0 +1,7 @@
+.*.swp
+cwc
+
+# grr mac
+.DS_Store
+
+*.log

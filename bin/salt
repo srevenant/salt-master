@@ -1,0 +1,5 @@
+#!/bin/bash
+
+id=$(docker ps --format  '{{.ID}}\t{{.Names}}'|grep salt_master|cut -f1)
+base=$(basename $0)
+exec docker exec $id $base "$@"

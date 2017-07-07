@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  master:
+    image: salt-master
+    build: .
+    volumes:
+      - /data/salt-master/master.d:/etc/salt/master.d
+      - /data/salt-master/pki:/etc/salt/pki
+      - /data/salt-master/cache:/var/cache/salt
+      - /data/salt-master/log:/var/log/salt
+    ports:
+      - published: 4505
+        target: 4505
+        mode: host
+      - published: 4506
+        target: 4506
+        mode: host
