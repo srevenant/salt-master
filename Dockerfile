@@ -1,14 +1,15 @@
-FROM centos:7
+FROM python:3-alpine
 
-RUN yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-latest-2.el7.noarch.rpm
-RUN yum -y install salt-master
+# for dev/compiling modules, if needed
+#    apk add python3-dev libffi ca-certificates \
+#        inotify-tools git openssh bash vim \
+#        nodejs libffi-dev gcc libc-dev tar make && \
+RUN apk update && \
+    apk add salt-master
 
 WORKDIR /srv
 
 COPY pillar /srv/pillar
 COPY salt /srv/salt
 
-ENTRYPOINT [ "/usr/bin/salt-master" ]
-
-# always keep current on patches, good DevSecOps
-RUN yum -y upgrade && yum -y clean all 
+CMD [ "/usr/bin/salt-master" ]

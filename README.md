@@ -6,7 +6,8 @@ This is intended as a reference, run as a swarm service, on a single node with l
 
 Stackfile is: salt-master.yml
 
-The stateful volumes that are referenced:
+Four volumes are used to track state between restarts, in `salt-master.yml`,
+which could be located anywhere outside the container, such as `/data/salt-master`:
 
     mkdir -p /data/salt-master/pki
     mkdir -p /data/salt-master/log

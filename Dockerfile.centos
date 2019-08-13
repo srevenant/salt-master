@@ -1,0 +1,18 @@
+FROM centos:7
+
+RUN yum -y install centos-release-scl
+RUN yum -y install https://repo.saltstack.com/yum/redhat/salt-repo-latest-2.el7.noarch.rpm
+RUN yum -y install rh-python36
+RUN scl enable rh-python36 bash &&\
+    yum -y install salt-master
+RUN yum -y groupinstall 'Development Tools'
+
+WORKDIR /srv
+
+COPY pillar /srv/pillar
+COPY salt /srv/salt
+
+ENTRYPOINT [ "/usr/bin/salt-master" ]
+
+# always keep current on patches, good DevSecOps
+RUN yum -y upgrade && yum -y clean all
