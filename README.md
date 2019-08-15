@@ -27,3 +27,6 @@ Update the service with:
 (one might suggest you have a CI system trigger this command on a merge to a git repo)
 
 Files located in bin/ are meant to be run from the outside host, to reach inside the container.
+
+If working in AWS, consider [Oz Boostrap](https://github.com/srevenant/oz) as a way to setup the foundations for your network,
+before bringing a tool like saltstack online (a pre-provisioning bootstrap script)
